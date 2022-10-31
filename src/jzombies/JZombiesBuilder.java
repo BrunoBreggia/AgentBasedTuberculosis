@@ -3,6 +3,7 @@ package jzombies;
 import repast.simphony.context.Context;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
+import repast.simphony.context.space.graph.NetworkBuilder;
 import repast.simphony.context.space.grid.GridFactory;
 import repast.simphony.context.space.grid.GridFactoryFinder;
 import repast.simphony.dataLoader.ContextBuilder;
@@ -21,6 +22,10 @@ public class JZombiesBuilder implements ContextBuilder<Object> {
 	public Context build(Context<Object> context) {
 		
 		context.setId("jzombies");
+		
+		// Create a Network
+		NetworkBuilder<Object> netBuilder = new NetworkBuilder<Object>("infection network", context, true);
+		netBuilder.buildNetwork();
 		
 		// Create ContinuousSpace projection
 		ContinuousSpaceFactory spaceFactory = ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(null);
